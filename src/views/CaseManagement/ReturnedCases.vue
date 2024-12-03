@@ -2,7 +2,6 @@
   <div class="unsubmitted-cases">
     <!-- 顶部操作区域 -->
     <div class="operation-bar">
-      <el-button type="primary" @click="handleCreate">新建</el-button>
       <div class="search-box">
         <el-input
           v-model="searchQuery"
