@@ -2,7 +2,7 @@
     <div class="unsubmitted-cases">
       <!-- 顶部操作区域 -->
       <div class="operation-bar">
-        <el-button type="primary" @click="handleCreate">新建</el-button>
+        
         <div class="search-box">
           <el-input
             v-model="searchQuery"
@@ -15,6 +15,7 @@
             </template>
           </el-input>
         </div>
+        <el-button type="primary" @click="handleCreate">新建病例</el-button>
       </div>
   
       <!-- 表格 -->
@@ -133,5 +134,9 @@
   
   .search-box {
     width: 300px;
+  }
+
+  .operation-bar .el-button {
+    margin-right: 10px;
   }
   </style>
