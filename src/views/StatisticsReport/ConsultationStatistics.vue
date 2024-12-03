@@ -17,7 +17,7 @@
           </template>
         </el-input>
       </div>
-      <el-button type="success" @click="handleExport">
+      <el-button type="primary" class = "export-button" @click="handleExport">
         <i class="el-icon-download"></i>
         导出Excel
       </el-button>
@@ -136,5 +136,9 @@ export default {
 
     .search-box {
     width: 300px;
+    }
+
+    .export-button {
+    margin-right: 20px;
     }
 </style>

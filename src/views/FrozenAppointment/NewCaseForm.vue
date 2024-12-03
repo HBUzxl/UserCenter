@@ -1,18 +1,21 @@
 <template>
     <el-dialog
-      title="新建病例"
-      v-model="dialogVisible"
+      title="申请预约"
+      :model-value="visible"
+      @update:model-value="$emit('update:visible')"
       width="70%"
       @close="handleClose"
     >
-      <el-tabs v-model="activeName" class="demo-tabs">
-        <el-tab-pane label="预约信息" name="appointmentInfo">
-          <AppointmentInfo />
-        </el-tab-pane>
-        <el-tab-pane label="选择会诊中心" name="selectCenter">
-          <SelectCenter />
-        </el-tab-pane>
-      </el-tabs>
+      <el-form ref="formRef" :model="form">
+        <el-tabs v-model="activeName" class="demo-tabs">
+          <el-tab-pane label="预约信息" name="appointmentInfo">
+            <AppointmentInfo v-model="form" />
+          </el-tab-pane>
+          <el-tab-pane label="选择会诊中心" name="selectCenter">
+            <SelectCenter v-model="form" />
+          </el-tab-pane>
+        </el-tabs>
+      </el-form>
   
       <template #footer>
         <span class="dialog-footer">
@@ -62,6 +65,10 @@
       const handleClose = () => {
         emit("update:visible", false);
         formRef.value?.resetFields();
+        activeName.value = "appointmentInfo"; // 重置标签页
+        Object.keys(form).forEach(key => {
+          form[key] = "";  // 重置表单数据
+        });
       };
   
       const handleSubmit = async () => {
@@ -96,19 +103,19 @@
   .demo-tabs {
     margin: 15px 0;
   }
-
+  
   .dialog-footer {
     text-align: right;
   }
-
+  
   :deep(.el-dialog__body) {
     padding: 10px 20px;
   }
-
+  
   :deep(.el-tabs__header) {
     margin-bottom: 15px;
   }
-
+  
   :deep(.demo-tabs) {
     margin-top: -10px;
   }

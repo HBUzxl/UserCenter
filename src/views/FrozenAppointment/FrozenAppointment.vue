@@ -58,15 +58,19 @@
     </el-table>
   </div>
 
-  <NewCaseForm v-model="showNewCaseForm" @submit="handleNewCaseSubmit"/>
+  <NewCaseForm v-model:visible="showNewCaseForm" @submit="handleNewCaseSubmit" />
 
 </template>
-  
-  <script>
+
+<script>
 import { ref, computed } from "vue";
+import NewCaseForm from './NewCaseForm.vue'
 
 export default {
   name: "UnsubmittedCases",
+  components: {
+    NewCaseForm
+  },
   setup() {
     const loading = ref(false);
     const searchQuery = ref("");
@@ -105,9 +109,22 @@ export default {
 
     // 处理预约按钮
     const handleAppoint = () => {
-      showNewCaseForm.value = true
+      showNewCaseForm.value = true;
       console.log("点击新建按钮");
-      // 实现新建逻辑
+    };
+
+    // 处理新建表单提交
+    const handleNewCaseSubmit = (formData) => {
+      console.log("提交表单数据:", formData);
+      // 这里添加实际的API调用
+      tableData.value.unshift({
+        ...formData,
+        consultationNo: 'C' + Date.now(),
+        expert: '待分配',
+        submitTime: new Date().toLocaleString(),
+        status: '待确认'
+      });
+      showNewCaseForm.value = false;
     };
 
     // 处理编辑
@@ -130,13 +147,14 @@ export default {
       handleAppoint,
       handleEdit,
       handleDelete,
-      showNewCaseForm
+      showNewCaseForm,
+      handleNewCaseSubmit
     };
   },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .appointment {
   padding: 0px;
 }

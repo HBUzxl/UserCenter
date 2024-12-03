@@ -274,6 +274,7 @@
 
   <style scoped>
   .case-info {
+    padding: 20px;
     background-color: #fff;
   }
 
@@ -308,7 +309,6 @@
   :deep(.el-input-number) {
     width: 100%;
   }
-
 
 
   /* 大文本框样式优化 */
