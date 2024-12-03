@@ -1,5 +1,5 @@
 <template>
-  <div class="unsubmitted-cases">
+  <div class="appointment">
     <!-- 顶部操作区域 -->
     <div class="operation-bar">
       <div class="search-box">
@@ -57,6 +57,9 @@
       </el-table-column>
     </el-table>
   </div>
+
+  <NewCaseForm v-model="showNewCaseForm" @submit="handleNewCaseSubmit"/>
+
 </template>
   
   <script>
@@ -67,6 +70,7 @@ export default {
   setup() {
     const loading = ref(false);
     const searchQuery = ref("");
+    const showNewCaseForm = ref(false)
     const tableData = ref([
       // 示例数据，实际使用时应该从API获取
       {
@@ -99,8 +103,9 @@ export default {
       console.log("搜索关键词:", searchQuery.value);
     };
 
-    // 处理新建
+    // 处理预约按钮
     const handleAppoint = () => {
+      showNewCaseForm.value = true
       console.log("点击新建按钮");
       // 实现新建逻辑
     };
@@ -125,13 +130,14 @@ export default {
       handleAppoint,
       handleEdit,
       handleDelete,
+      showNewCaseForm
     };
   },
 };
 </script>
   
   <style scoped>
-.unsubmitted-cases {
+.appointment {
   padding: 0px;
 }
 
