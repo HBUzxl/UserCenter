@@ -50,16 +50,26 @@
         </el-table-column>
       </el-table>
     </div>
+    
+    <NewCaseForm v-model:visible="showNewCaseForm" @submit="handleNewCaseSubmit" />
+
   </template>
   
   <script>
   import { ref, computed } from 'vue'
-  
+  import NewCaseForm from './NewCaseForm.vue'
+
   export default {
     name: 'UnsubmittedCases',
+    components: {
+      NewCaseForm
+    },
     setup() {
       const loading = ref(false)
       const searchQuery = ref('')
+      const showNewCaseForm = ref(false)
+
+
       const tableData = ref([
         // 示例数据，实际使用时应该从API获取
         {
@@ -90,10 +100,17 @@
         console.log('搜索关键词:', searchQuery.value)
       }
   
-      // 处理新建
+      // 处理新建按钮点击
       const handleCreate = () => {
+        showNewCaseForm.value = true
         console.log('点击新建按钮')
         // 实现新建逻辑
+      }
+
+      //表单提交
+      const handleNewCaseSubmit = (newCase) => {
+        console.log('表单提交:', newCase)
+        // 在这里处理新建病例的逻辑
       }
   
       // 处理编辑
@@ -115,10 +132,13 @@
         handleSearch,
         handleCreate,
         handleEdit,
-        handleDelete
+        handleDelete,
+        showNewCaseForm,
+        handleNewCaseSubmit
       }
     }
   }
+
   </script>
   
   <style scoped>
