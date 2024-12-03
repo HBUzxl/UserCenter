@@ -23,16 +23,17 @@
         border
         style="width: 100%"
         v-loading="loading"
+        :resizable="false"
       >
         <el-table-column type="index" label="序号" width="60" />
-        <el-table-column prop="pathologyNo" label="病理号" min-width="120" />
-        <el-table-column prop="name" label="姓名" min-width="120" />
+        <el-table-column prop="pathologyNo" label="病理号" min-width="100" />
+        <el-table-column prop="name" label="姓名" min-width="80" />
         <el-table-column prop="gender" label="性别" min-width="80" />
         <el-table-column prop="age" label="年龄" min-width="80" />
-        <el-table-column prop="pathologyType" label="病理类型" min-width="120" />
-        <el-table-column prop="expert" label="诊断专家" min-width="120" />
-        <el-table-column prop="printCount" label="打印次数" min-width="100" />
-        <el-table-column label="操作"  min-width="200">
+        <el-table-column prop="pathologyType" label="病理类型" min-width="100" />
+        <el-table-column prop="expert" label="诊断专家" min-width="100" />
+        <el-table-column prop="printCount" label="打印次数" min-width="90" />
+        <el-table-column label="操作"  min-width="150">
           <template #default="scope">
             <el-button
               size="small"
@@ -121,7 +122,7 @@
   
   <style scoped>
   .unsubmitted-cases {
-    padding: 20px;
+    padding: 0px;
   }
   
   .operation-bar {
