@@ -100,7 +100,7 @@ export default {
     };
 
     // 处理新建
-    const handleCreate = () => {
+    const handleAppoint = () => {
       console.log("点击新建按钮");
       // 实现新建逻辑
     };
@@ -122,7 +122,7 @@ export default {
       searchQuery,
       filteredTableData,
       handleSearch,
-      handleCreate,
+      handleAppoint,
       handleEdit,
       handleDelete,
     };
